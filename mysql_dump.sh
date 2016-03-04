@@ -3,6 +3,9 @@
 # This is a simple script to create a snapshot of a MySQL server.
 # It finds all databases in the server, and creates a single gzipped dump
 # of each one using the mysqldump command, suitable for being backed up by bacula.
+#
+# Run it from cron like that
+# 01 4 * * * /root/bin/dumpmysql.sh 2>&1 |logger
 # Send bugreports, fixes, enhancements, t-shirts, money, beer & pizza to devnull@mielnet.pl
 #############################################################################
 
