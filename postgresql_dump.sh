@@ -1,9 +1,8 @@
 #!/bin/bash
 #############################################################################
-# This is a simple script to create a snapshot of a PostgreSQL server.
-# We need to list databases we want to back up in `db` variable below,
-# existing dbs can be identified with
-# psql --username=postgres -l 
+# simple script to create a snapshot of a PostgreSQL databases
+# can be run from cron like that
+# 01 3 * * * /root/bin/postgresql_dump.sh 2>&1 |logger
 # 
 # Send bugreports, fixes, enhancements, t-shirts, money, beer & pizza to devnull@mielnet.pl
 #############################################################################
@@ -11,7 +10,9 @@
 #------------ variables
 # Directory to store backups in
 DST=/backup/dbback_postgresql
-DATABASES="postgres rhnschema"
+# DATABASES="postgres rhnschema"
+DATABASES=`su - postgres -c "psql --username=postgres -l -x"|grep Name|grep -v template|cut -d"|" -f2|xargs`
+
 # Any backups older than this will be deleted first
 KEEPDAYS=7
 DATE=$(date  +%Y-%m-%d)
