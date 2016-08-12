@@ -1,7 +1,8 @@
 #!/bin/bash
-# Add this script to cronjob
-# 30 6 * * * /root/bin/zfsSync.sh 2>&1 |logger
-#  I use zfs-auto-snapshot for daily autosnaphots, otherwise it should be easy to add snapshot below, before being sent
+# Add this cronjob on the source machine (where you are syncing zfs filesystem from)
+#  30 6 * * * /root/bin/zfsSync.sh 2>&1 |logger
+# I use zfs-auto-snapshot for daily autosnaphots, i
+# otherwise it should be easy to add zfs snapshot line below, before being sent
 LASTSENT=`cat /root/lastsnap.var`
 OLDERSNAP=`/sbin/zfs list -t snapshot|grep vmfs |tail -n2|head -n1|cut -d" " -f1`
 LASTSNAP=`/sbin/zfs list -t snapshot|grep vmfs |tail -n1|cut -d" " -f1`

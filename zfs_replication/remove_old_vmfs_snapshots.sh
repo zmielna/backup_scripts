@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Add this script to cron, say:
+# Add this script on target machine (where you are syncing zfs filesystem to) to cron, say:
 # 30 23 * * * /root/bin/remove_old_vmfs_snapshots.sh 2>&1 |logger
 # 
 # OK, lets do it - we only keep last 7 snapshots
